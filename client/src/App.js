@@ -1,10 +1,12 @@
+import { Routes , Route } from "react-router-dom";
 import "./App.css";
+import Posts from "./components/Posts";
 
 function App() {
   return (
-    <div>
-      Hello
-    </div>
+    <Routes>
+      <Route path="/post" element={<Posts />} />
+    </Routes>
   );
 }
 
