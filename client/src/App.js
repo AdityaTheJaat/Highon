@@ -6,6 +6,7 @@ import Create from "./components/Create";
 import CreatePost from "./components/CreatePost";
 import CreateStory from "./components/CreateStory";
 import Gallery from "./components/Gallery";
+import PostDesc from "./components/PostDesc";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/create/createPost" element={<CreatePost />} />
       <Route path="/create/createStory" element={<CreateStory />} />
       <Route path="/create/createPost/gallery" element={<Gallery />} />
+      <Route path="/create/createPost/gallery/postDesc" element={<PostDesc />} />
     </Routes>
   )
 }

@@ -9,7 +9,7 @@ const Gallery = () => {
         <Link to='/create/createPost/'>
           <img src={back} alt='' className='w-10' />
         </Link>
-        <Link to=''>
+        <Link to='/create/createPost/gallery/postDesc'>
           <button className='rounded-2xl text-white p-3 bg-neutral-600'>Next</button>
         </Link>
       </div>
