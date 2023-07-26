@@ -15,21 +15,21 @@ const postSchema = mongoose.Schema({
     createdAt: {type: Date, default: new Date()},
 })
 
-postSchema.post("save", async function(doc) {
-  try{
-      console.log("DOC",doc)
-      let transporter = nodemailer.createTransport({
-          host: process.env.MAIL_HOST,
-          auth:{
-              user:process.env.MAIL_USER,
-              pass: process.env.MAIL_PASS,
-          },
-      });
-      console.log("INFO", info);
-  }
-  catch(error) {
-      console.error(error);
-  }
-})
+// postSchema.post("save", async function(doc) {
+//   try{
+//       console.log("DOC",doc)
+//       let transporter = nodemailer.createTransport({
+//           host: process.env.MAIL_HOST,
+//           auth:{
+//               user:process.env.MAIL_USER,
+//               pass: process.env.MAIL_PASS,
+//           },
+//       });
+//       console.log("INFO", info);
+//   }
+//   catch(error) {
+//       console.error(error);
+//   }
+// })
 
 module.exports = mongoose.model("Post", postSchema)
