@@ -11,24 +11,25 @@ async function uploadFileToCloudinary(file, folder, quality) {
 exports.imageUpload = async (req, res) => {
 	try {
 		//data fetch
-		const { name, email } = req.formData;
+		const { name, email } = req.body;
 		console.log(name, email);
     console.log(req.body)
 		const file = req.files;
 		console.log(file);
+    console.log(file.imageFile.name)
 
 		//Validation
 		const supportedTypes = ["jpg", "jpeg", "png"];
-		const fileType = file.name.split(".")[1].toLowerCase();
+		const fileType = file.imageFile.name.split(".")[1].toLowerCase();
 		console.log("File Type:", fileType);
-
+    console.log("Testing")
 		if (!isFileTypeSupported(fileType, supportedTypes)) {
 			return res.status(400).json({
 				success: false,
 				message: "File format not supported",
 			});
 		}
-
+    
 		//file format supported hai
 		console.log("Uploading to Codehelp");
 		const response = await uploadFileToCloudinary(file, "Aditya");
@@ -45,6 +46,7 @@ exports.imageUpload = async (req, res) => {
 			success: true,
 			imageUrl: response.secure_url,
 			message: "Image Successfully Uploaded",
+      fileData
 		});
 	} catch (error) {
 		console.error(error);
