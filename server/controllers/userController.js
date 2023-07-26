@@ -2,27 +2,27 @@ const User = require("../models/User");
 const Post = require("../models/Post");
 
 const likeController = async (req, res) => {
-  const reqUser = req.body.currentUser;
-  const reqPostId = req.body.postId;
+	const reqUser = req.body.currentUser;
+	const reqPostId = req.body.postId;
 
-  try {
-    const userFromDB = await User.findOne({ email: reqUser.email });
-    const postFromDB = await Post.findOne({ _id: reqPostId });
+	try {
+		const userFromDB = await User.findOne({ email: reqUser.email });
+		const postFromDB = await Post.findOne({ _id: reqPostId });
 
-    userFromDB.likedPosts.push(postFromDB);
-    postFromDB.likes.users.push(userFromDB);
-    postFromDB.likes.usersName.push(
-      userFromDB.firstName + " " + userFromDB.lastName
-    );
-    postFromDB.likes.total += 1;
+		userFromDB.likedPosts.push(postFromDB);
+		postFromDB.likes.users.push(userFromDB);
+		postFromDB.likes.usersName.push(
+			userFromDB.firstName + " " + userFromDB.lastName
+		);
+		postFromDB.likes.total += 1;
 
-    await userFromDB.save();
-    await postFromDB.save();
+		await userFromDB.save();
+		await postFromDB.save();
 
-    res.status(200).json({ message: "Post liked" });
-  } catch (err) {
-    res.status(500).json({ message: "Error" });
-  }
+		res.status(200).json({ message: "Post liked" });
+	} catch (err) {
+		res.status(500).json({ message: "Error" });
+	}
 };
 
-module.exports = { likeController}
+module.exports = { likeController };
