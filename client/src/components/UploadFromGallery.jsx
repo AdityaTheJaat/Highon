@@ -1,11 +1,8 @@
 import React, { useRef, useState } from 'react'
-import back from '../resources/back.svg'
-import { Link } from 'react-router-dom'
 
-const Gallery = () => {
+const UploadFromGallery = () => {
   //const { token } = useSelector((state) => state.auth)
-  const user_info = JSON.parse(localStorage.getItem("user_info"))
-  const token = user_info?.user?.token;
+  //const { user } = useSelector((state) => state.profile)
   const fileInputRef = useRef();
   const [loading, setLoading] = useState(false)
   const [imgFile, setImgFile] = useState(null);
@@ -39,18 +36,7 @@ const Gallery = () => {
     fileInputRef.current.click();
   }
   return (
-    <div className='w-11/12 mx-auto space-y-4'>
-      <div className='flex justify-between mt-10 '>
-        <Link to='/create/createPost/'>
-          <img src={back} alt='' className='w-10' />
-        </Link>
-        <Link to='/create/createPost/gallery/upload/postDesc'>
-          <button className='rounded-2xl text-white p-3 bg-neutral-600'>Next</button>
-        </Link>
-      </div>
-      <p className='text-center text-zinc-600'>Select from your gallery</p>
-      {/* PHOTOS */}
-      <div className='flex gap-5 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12'>
+    <div className='flex gap-5 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12'>
       <img src={previewSrc} alt='' className="aspect-square w-[78px] rounded-full object-cover" />
       <div className='flex-row'>
         <p className="text-lg font-medium text-richblack-5 mb-1">Change Profile Picture</p>
@@ -73,8 +59,7 @@ const Gallery = () => {
         </div>
       </div>
     </div>
-    </div>
   )
 }
 
-export default Gallery
+export default UploadFromGallery

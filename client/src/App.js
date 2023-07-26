@@ -9,25 +9,26 @@ import Gallery from "./components/Gallery";
 import PostDesc from "./components/PostDesc";
 import LoginPage from "./components/LoginPage";
 import SignUpPage from "./components/SignUpPage";
-
+import {Toaster} from 'react-hot-toast'
+import UploadFromGallery from "./components/UploadFromGallery";
 
 function App() {
 	return (
-		<Routes>
-			<Route path="/" element={<HomePage />} />
-			<Route path="/post" element={<Posts />} />
-			<Route path="/create" element={<Create />} />
-			<Route path="/create/createPost" element={<CreatePost />} />
-			<Route path="/create/createStory" element={<CreateStory />} />
-			<Route path="/create/createPost/gallery" element={<Gallery />} />
-			<Route
-				path="/create/createPost/gallery/postDesc"
-				element={<PostDesc />}
-			/>
-			<Route path="/login" element={<LoginPage />} />
-      <Route path="/signup" element={<SignUpPage />} />
-
-		</Routes>
+		<div>
+			<Toaster position="top-center" reverseOrder={true} />
+			<Routes>
+				<Route path="/" element={<HomePage />} />
+				<Route path="/post" element={<Posts />} />
+				<Route path="/create" element={<Create />} />
+				<Route path="/create/createPost" element={<CreatePost />} />
+				<Route path="/create/createStory" element={<CreateStory />} />
+				<Route path="/create/createPost/gallery" element={<Gallery />} />
+				<Route path="/create/createPost/gallery/upload" element={<UploadFromGallery />} />
+				<Route path="/create/createPost/gallery/upload/postDesc" element={<PostDesc />}/>
+				<Route path="/login" element={<LoginPage />} />
+				<Route path="/signup" element={<SignUpPage />} />
+			</Routes>
+		</div>
 	);
 }
 

@@ -1,6 +1,7 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const UserContext = createContext();
 
@@ -38,10 +39,11 @@ export const UserProvider = ({ children }) => {
 			console.log(res.data);
       localStorage.setItem("user_info", JSON.stringify(res.data));
       setUserData(res.data)
-      console.log(userData)
+			toast.success("Login Seccessful")
       navigate("/")
 		} catch (err) {
 			console.log(err);
+			toast.error("Error while logging in!")
 		}
 	};
 
@@ -54,8 +56,10 @@ export const UserProvider = ({ children }) => {
       });
       console.log(res.data);
       navigate("/login")
+			toast.success("Signup Successful")
     } catch (err) {
       console.log(err);
+			toast.error("Error signing up!")
     }
   };
 
