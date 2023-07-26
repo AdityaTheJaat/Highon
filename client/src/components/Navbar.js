@@ -7,15 +7,13 @@ import UserContext from "../context/UserContext";
 import { toast } from "react-hot-toast";
 
 const Navbar = () => {
-	const { userData, setUserData  } = useContext(UserContext);
+	const { userData, setUserData } = useContext(UserContext);
 
-  const handleLogout = () => {
-    setUserData(null);
-    localStorage.removeItem("user_info");
-		toast.success("Logged out!")
-  };
-
-
+	const handleLogout = () => {
+		setUserData(null);
+		localStorage.removeItem("user_info");
+		toast.success("Logged out!");
+	};
 
 	return (
 		<div className="flex justify-around items-center mt-10 sticky mx-auto w-11/12">
@@ -31,8 +29,15 @@ const Navbar = () => {
 
 				<img src={search} className="w-10 p-1" alt="" />
 			</div>
-			<div>{!userData ? <Link to="/login">Login</Link > : <button onClick={handleLogout} className="h-4 w-4 mr-5" >
-      Logout</button>}</div>
+			<div>
+				{!userData ? (
+					<Link to="/login">Login</Link>
+				) : (
+					<button onClick={handleLogout} className="h-4 w-4 mr-5">
+						Logout
+					</button>
+				)}
+			</div>
 		</div>
 	);
 };

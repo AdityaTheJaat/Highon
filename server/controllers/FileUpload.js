@@ -1,7 +1,6 @@
 const cloudinary = require("cloudinary");
 const Post = require("../models/Post");
 
-
 async function uploadFileToCloudinary(file, folder, quality) {
 	const options = { folder };
 	console.log;
@@ -22,7 +21,7 @@ exports.imageUpload = async (req, res) => {
 		const response = await uploadFileToCloudinary(file, "Aditya");
 		await Post.create({
 			description,
-      creator:email,
+			creator: email,
 			creatorName: name,
 			likes: {
 				total: 0,
