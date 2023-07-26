@@ -10,6 +10,7 @@ const userSchema = mongoose.Schema({
     post: {type: mongoose.Schema.Types.ObjectId, ref: "Post"},
     createdAt: {type: Date, default: new Date()},
     likedPosts: [{type: mongoose.Schema.Types.ObjectId, ref: "Post"}],
+    token: {type: String}
     
 })
 
