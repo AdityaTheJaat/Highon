@@ -1,24 +1,23 @@
 import React from "react";
 import post from "../resources/post.jpeg";
-import { AiOutlineHeart } from 'react-icons/ai'
+import { AiOutlineHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import UserContext from "../context/UserContext";
 
 const PostHomeCard = () => {
-  const navigate = useNavigate();
-  return (
-    <div className="flex w-11/12 mx-auto pt-14">
-      <div className="w-[50%]" onClick={() => navigate("/post")}>
-        <img src={post} alt="" className="rounded-2xl p-1 h-28 w-full" />
-        <img src={post} alt="" className="rounded-2xl p-1 h-60" />
-        <img src={post} alt="" className="rounded-2xl p-1 h-80 w-full" />
-      </div>
-      <div className="w-[50%]" onClick={() => navigate("/post")}>
-        <img src={post} alt="" className="rounded-2xl p-1 h-80 w-full" />
-        <img src={post} alt="" className="rounded-2xl p-1 h-60" />
-        <img src={post} alt="" className="rounded-2xl p-1 h-28 w-full" />
-      </div>
-    </div>
-  );
+	const { posts } = React.useContext(UserContext);
+	const navigate = useNavigate();
+	return (
+		<div className=" flex justify-center items-center pt-14">
+			<div className=" flex  flex-wrap " onClick={() => navigate("/post")}>
+				{posts.map((post,index) => (
+					<div key={post._id} className="w-[45%] m-2  ">
+						<img src={post.imagePost} alt="" className=" rounded-xl" />
+					</div>
+				))}
+			</div>
+		</div>
+	);
 };
 
 export default PostHomeCard;
