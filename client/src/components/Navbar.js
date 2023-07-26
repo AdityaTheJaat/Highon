@@ -1,24 +1,38 @@
-import React from 'react'
-import Logo from '../resources/Logo.jpg'
-import add from '../resources/add.svg'
-import search from '../resources/search.svg'
-import { Link } from 'react-router-dom'
+import React, { useContext } from "react";
+import Logo from "../resources/Logo.jpg";
+import add from "../resources/add.svg";
+import search from "../resources/search.svg";
+import { Link } from "react-router-dom";
+import UserContext from "../context/UserContext";
 
 const Navbar = () => {
-  return (
-    <div className='flex justify-between mt-10 sticky mx-auto w-11/12'>
-      <div>
-        <img src={Logo} alt='Highon' className='w-20' />
-      </div>
-      <div className='flex'>
-        <Link to='/create'>
-          <button><img src={add} className='w-10 rounded-2xl p-1' alt='' /></button>
-        </Link>
-        
-        <img src={search} className='w-10 p-1' alt='' />
-      </div>
-    </div>
-  )
-}
+	const { userData, setUserData  } = useContext(UserContext);
 
-export default Navbar
+  const handleLogout = () => {
+    setUserData(null);
+    localStorage.removeItem("user_info");
+  };
+
+
+
+	return (
+		<div className="flex justify-between mt-10 sticky mx-auto w-11/12">
+			<div>
+				<img src={Logo} alt="Highon" className="w-20" />
+			</div>
+			<div className="flex">
+				<Link to="/create">
+					<button>
+						<img src={add} className="w-10 rounded-2xl p-1" alt="" />
+					</button>
+				</Link>
+
+				<img src={search} className="w-10 p-1" alt="" />
+			</div>
+			<div>{!userData ? <Link to="/login">Login</Link > : <button onClick={handleLogout} className="h-4 w-4" >
+      Logout</button>}</div>
+		</div>
+	);
+};
+
+export default Navbar;

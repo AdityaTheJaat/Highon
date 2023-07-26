@@ -4,7 +4,13 @@ import back from '../resources/back.svg'
 import gallery from '../resources/gallery.svg'
 import camera from '../resources/camera.svg'
 
+
+
+
 const CreatePost = () => {
+
+  
+
   return (
     <div className='flex flex-col space-y-4'>
       <Link to='/create'>

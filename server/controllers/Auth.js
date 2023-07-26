@@ -7,6 +7,7 @@ exports.signUp = async (req, res) => {
   try{
     //Fetch data from request body
     const {email ,password} = req.body;
+    console.log(email + password)
 
     //Validating
     if(!email || !password){
@@ -54,6 +55,7 @@ exports.login = async (req, res) => {
      //Fetch data from request body
       const {email, password} = req.body;
       console.log("Testing for login")
+      console.log(email + password)
       //Validate data
       if(!email || !password){
         return res.status(400).json({
