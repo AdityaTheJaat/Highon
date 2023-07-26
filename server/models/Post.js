@@ -5,8 +5,11 @@ const postSchema = mongoose.Schema({
     message: {type: String, required: true},
     creator: {type: mongoose.Schema.Types.ObjectId, required: true},
     tags: {type: [String], required: true},
-    selectedFile: {type: String, required: true},
-    likes: {type: [String], required: true},
+    likes: {
+      total: { type: Number },   
+      users: { type: [mongoose.Schema.Types.ObjectId], default: [] },
+      usersName : { type: [String], default: [] },
+    },
     createdAt: {type: Date, default: new Date()},
 })
 
