@@ -1,5 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cloudinary = require("cloudinary").v2;
+const multer = require("multer");
 const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
 
@@ -27,9 +29,32 @@ mongoose
   });
 
 
-
-
-
+  const cloudinaryConnect = () => {
+    try {
+      cloudinary.config({
+        cloud_name: process.env.CLOUD_NAME,
+        api_key: process.env.API_KEY,
+        api_secret: process.env.API_SECRET,
+      });
+      console.log("Cloudinary connected successfully!");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  cloudinaryConnect();
+  
+  // const storage = multer.diskStorage({
+  //   destination: (req, file, cb) => {
+  //     cb(null, "uploads"); // Define the destination folder for uploaded files
+  //   },
+  //   filename: (req, file, cb) => {
+  //     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+  //     const ext = path.extname(file.originalname);
+  //     cb(null, file.fieldname + "-" + uniqueSuffix + ext);
+  //   },
+  // });
+  
+  // const upload = multer({ storage });
   //getUser 
   //getPosts 
   //
