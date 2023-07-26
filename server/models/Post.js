@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 
 const postSchema = mongoose.Schema({
     description: {type: String, required: true},
-    creator: {type: mongoose.Schema.Types.ObjectId, required: true},
+    creator: {type: String},
     creatorName: {type: String},
     tags: {type: [String], required: true},
     likes: {

@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "./Card";
 import { Link } from "react-router-dom";
+import UserContext from "../context/UserContext";
 
 const tempData = [
 	{
@@ -42,6 +43,7 @@ const tempData = [
 ];
 
 const Posts = () => {
+	const { posts } = React.useContext(UserContext);
 	return (
 		<div className="relative pt-10">
 			<Link to="/">
@@ -55,7 +57,7 @@ const Posts = () => {
 				</svg>
 			</Link>
 			<div>
-				{tempData.map((post, index) => (
+				{posts.map((post, index) => (
 					<Card key={index} postData={post} />
 				))}
 			</div>

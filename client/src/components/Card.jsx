@@ -6,8 +6,8 @@ const Card = ({ postData }) => {
 
   return (
     <div className="m-5 rounded-lg shadow-lg p-5 relative">
-      <h1>{postData.title}</h1>
-      <img src={postData.image} alt={postData.title} className="rounded-md" />
+      <h1>{postData.creatorName}</h1>
+      <img src={postData.imagePost} alt="" className="rounded-md" />
       {isLiked(postData) ? (
         <svg
         className="absolute right-8 bottom-20"
@@ -28,7 +28,7 @@ const Card = ({ postData }) => {
         </svg>
       )}
 
-      <p>{postData.body}</p>
+      <p>{postData.description}</p>
     </div>
   );
 };
