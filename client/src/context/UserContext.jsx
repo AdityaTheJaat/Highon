@@ -1,5 +1,5 @@
-import { createContext, useState } from "react";
-import axios from "axios";
+import { createContext, useEffect, useState } from "react";
+import axios, { Axios } from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
@@ -8,13 +8,22 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
 
   const [userData, setUserData] = useState(null);
-
-
-
+	const [posts, setPosts] = useState([]);
 	const URL = "http://localhost:4000";
 
   const navigate = useNavigate(); 
-
+	const fetchPosts = async () => {
+		try{
+			const response = await axios.get(`${URL}/user/getPosts`, {});
+			console.log(response.data.posts)
+			setPosts(response.data.posts)
+		} catch(err){
+			console.log("Error while fetching posts")
+		}
+	}
+	useEffect(()=>{
+		fetchPosts();
+	}, [])
 	const user = {
 		id: 1,
 		name: "John Doe",
@@ -65,7 +74,7 @@ export const UserProvider = ({ children }) => {
 
 
 	return (
-		<UserContext.Provider value={{ user, isLiked, login , signUp , userData  , setUserData}}>
+		<UserContext.Provider value={{ user, isLiked, login , signUp , userData  , setUserData, posts, setPosts}}>
 			{children}
 		</UserContext.Provider>
 	);

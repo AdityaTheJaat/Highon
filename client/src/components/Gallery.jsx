@@ -80,10 +80,12 @@
 // export default Gallery
 import React, { useState } from "react";
 import axios from "axios";
+import ChipInput from './ChipInput'
 
 const ImageUploadForm = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
+  const [description, setDescription] = useState("");
 	const [imageFile, setImageFile] = useState(null);
 	const [imageUrl, setImageUrl] = useState("");
 	const [message, setMessage] = useState("");
@@ -92,8 +94,12 @@ const ImageUploadForm = () => {
 		setName(e.target.value);
 	};
 
-	const handleEmailChange = (e) => {
+  const handleEmailChange = (e) => {
 		setEmail(e.target.value);
+	};
+
+	const handleDescriptionChange = (e) => {
+		setDescription(e.target.value);
 	};
 
 	const handleImageChange = (e) => {
@@ -106,6 +112,7 @@ const ImageUploadForm = () => {
 			const formData = new FormData();
 			formData.append("name", name);
 			formData.append("email", email);
+      formData.append("description", description)
 			formData.append("imageFile", imageFile);
 			// console.log(formData);
 			const response = await axios.post(
@@ -129,14 +136,18 @@ const ImageUploadForm = () => {
 					<input type="text" value={name} onChange={handleNameChange} />
 				</div>
         <div>
-          <label>descreption :</label>
-          
+          <label>description :</label>
+          <input type="text" value={description} onChange={handleDescriptionChange} />
         </div>
 				<div>
 					<label>Email:</label>
 					<input type="text" value={email} onChange={handleEmailChange} />
 				</div>
-				<div>
+        <ChipInput label="Tag People" />
+        <hr />
+        <ChipInput label="Location" />
+        <hr />
+				<div className="w-full">
 					<label>Image:</label>
 					<input type="file" onChange={handleImageChange} />
 				</div>

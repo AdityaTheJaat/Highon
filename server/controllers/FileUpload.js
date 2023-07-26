@@ -16,40 +16,21 @@ async function uploadFileToCloudinary(file, folder, quality) {
 exports.imageUpload = async (req, res) => {
 	try {
 		//data fetch
-		const { name, email } = req.fields;
-		console.log(name, email);
-		// console.log(req.files);
-		// console.log(req.body)
+		const { name, email, description } = req.fields;
 		const file = req.files;
-		// console.log(file);
-		// console.log(file.imageFile.path);
-
-		//Validation
-		const supportedTypes = ["jpg", "jpeg", "png"];
-		const fileType = file.imageFile.name.split(".")[1].toLowerCase();
-
-
 		console.log("Uploading to Codehelp");
 		const response = await uploadFileToCloudinary(file, "Aditya");
-
-
-		Post.create({
-			description: "Hello",
-			creator: "60b9b0b0e3b9c71f1c0b3b1e",
-			creatorName: "Aditya",
-			tags: ["Hello", "World"],
+		await Post.create({
+			description,
+      creator:email,
+			creatorName: name,
 			likes: {
 				total: 0,
 				users: [],
 				usersName: [],
 			},
-			location: "Delhi",
 			imagePost: response.secure_url,
 		});
-
-
-
- 
 		res.json({
 			success: true,
 			imageUrl: response.secure_url,
