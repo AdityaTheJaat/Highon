@@ -7,7 +7,7 @@ const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
 
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState({});
 	const [posts, setPosts] = useState([]);
 	const URL = "http://localhost:4000";
 
@@ -23,6 +23,7 @@ export const UserProvider = ({ children }) => {
 	}
 	useEffect(()=>{
 		fetchPosts();
+		console.log(userData)
 	}, [])
 	const user = {
 		id: 1,
@@ -32,10 +33,10 @@ export const UserProvider = ({ children }) => {
 	};
 
 	const isLiked = (post) => {
-		if (user.likedPost.includes(post.id)) {
-			return true;
+		if(JSON.parse(localStorage.getItem("user_info"))){
+			const user = JSON.parse(localStorage.getItem("user_info")).user;
+			return user.likedPosts.includes(post._id);
 		}
-		return false;
 	};
 
 	const login = async (email, password) => {
@@ -45,9 +46,11 @@ export const UserProvider = ({ children }) => {
 				email,
 				password,
 			});
-			console.log(res.data);
+			// console.log(res.data);
       localStorage.setItem("user_info", JSON.stringify(res.data));
-      setUserData(res.data)
+      setUserData(res.data.user)
+			console.log(res.data.user)
+			console.log(userData)
 			toast.success("Login Seccessful")
       navigate("/")
 		} catch (err) {
@@ -74,7 +77,7 @@ export const UserProvider = ({ children }) => {
 
 
 	return (
-		<UserContext.Provider value={{ user, isLiked, login , signUp , userData  , setUserData, posts, setPosts}}>
+		<UserContext.Provider value={{ user, isLiked, login , signUp , userData  , setUserData, posts, setPosts ,fetchPosts}}>
 			{children}
 		</UserContext.Provider>
 	);

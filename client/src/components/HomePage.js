@@ -5,7 +5,7 @@ import PostPhotos from './PostPhotos'
 const HomePage = () => {
   return (
     <div>
-      <div className=''>
+      <div >
         <Navbar />
         <PostPhotos />
       </div>

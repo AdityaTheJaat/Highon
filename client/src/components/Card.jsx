@@ -8,7 +8,7 @@ const Card = ({ postData }) => {
     <div className="m-5 rounded-lg shadow-lg p-5 relative">
       <h1>{postData.creatorName}</h1>
       <img src={postData.imagePost} alt="" className="rounded-md" />
-      {isLiked(postData) ? (
+      {!isLiked(postData) ? (
         <svg
         className="absolute right-8 bottom-20"
           xmlns="http://www.w3.org/2000/svg"
