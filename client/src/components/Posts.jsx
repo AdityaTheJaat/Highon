@@ -3,7 +3,6 @@ import Card from "./Card";
 import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
 
-
 const Posts = () => {
 	const { posts } = React.useContext(UserContext);
 	return (

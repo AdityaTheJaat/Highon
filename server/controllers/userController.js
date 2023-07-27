@@ -26,17 +26,15 @@ const likeController = async (req, res) => {
 };
 
 const fetchPosts = async (req, res) => {
-	try{
-    const posts = await Post.find();
-		return res
-		.status(200)
-		.send({"success":true,"posts":posts});  
-  } catch(err){
-    res.status(500).json({
-      success:false,
-      message:"Error while fetching Categories!"
-    });
-  }
-}
+	try {
+		const posts = await Post.find();
+		return res.status(200).send({ success: true, posts: posts });
+	} catch (err) {
+		res.status(500).json({
+			success: false,
+			message: "Error while fetching Categories!",
+		});
+	}
+};
 
 module.exports = { likeController, fetchPosts };
